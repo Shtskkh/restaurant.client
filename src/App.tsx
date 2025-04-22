@@ -1,9 +1,11 @@
-function App() {
+import { CssBaseline } from "@mui/material";
 
-    return (
-        <>
-        </>
-    )
+function App() {
+  return (
+    <>
+      <CssBaseline />
+    </>
+  );
 }
 
-export default App
+export default App;
