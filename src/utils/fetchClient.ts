@@ -5,8 +5,8 @@ import { QueryClient } from "@tanstack/react-query";
 
 export const queryClient = new QueryClient();
 
-const fetchClient = createFetchClient<paths>({
-  baseUrl: "http://localhost:7280/",
+export const fetchClient = createFetchClient<paths>({
+  baseUrl: "https://localhost:7280/",
 });
 
 export const $api = createClient(fetchClient);
