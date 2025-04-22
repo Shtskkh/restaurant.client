@@ -3,7 +3,7 @@ import { Outlet } from "@tanstack/react-router";
 
 const pageLayout = (title: string) => {
   return (
-    <Box padding={3}>
+    <Box padding={3} width="100%">
       <Typography
         variant="h4"
         color="textPrimary"
