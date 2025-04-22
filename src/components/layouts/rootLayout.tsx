@@ -1,10 +1,12 @@
 ﻿import { HeadContent, Outlet } from "@tanstack/react-router";
 
-export const RootComponent = () => {
+const RootLayout = () => {
   return (
     <>
       <HeadContent />
       <Outlet />
     </>
-  )
-}
+  );
+};
+
+export default RootLayout;

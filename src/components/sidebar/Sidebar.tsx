@@ -2,7 +2,7 @@
 import { tabs } from "./tabs.tsx";
 import { ListItemLink } from "./ListItemLink.tsx";
 
-export const Sidebar = () => {
+const Sidebar = () => {
   return (
     <Drawer
       variant="permanent"
@@ -29,3 +29,5 @@ export const Sidebar = () => {
     </Drawer>
   );
 };
+
+export default Sidebar;
