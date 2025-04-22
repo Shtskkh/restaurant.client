@@ -13,7 +13,17 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
+import { Route as AuthSuppliesRouteImport } from './routes/_auth/supplies.route'
+import { Route as AuthStaffRouteImport } from './routes/_auth/staff.route'
+import { Route as AuthProfileRouteImport } from './routes/_auth/profile.route'
+import { Route as AuthOrdersRouteImport } from './routes/_auth/orders.route'
+import { Route as AuthDishesRouteImport } from './routes/_auth/dishes.route'
 import { Route as AuthDashboardRouteImport } from './routes/_auth/dashboard.route'
+import { Route as AuthSuppliesIndexImport } from './routes/_auth/supplies/index'
+import { Route as AuthStaffIndexImport } from './routes/_auth/staff/index'
+import { Route as AuthProfileIndexImport } from './routes/_auth/profile/index'
+import { Route as AuthOrdersIndexImport } from './routes/_auth/orders/index'
+import { Route as AuthDishesIndexImport } from './routes/_auth/dishes/index'
 import { Route as AuthDashboardIndexImport } from './routes/_auth/dashboard/index'
 
 // Create/Update Routes
@@ -29,10 +39,70 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthSuppliesRouteRoute = AuthSuppliesRouteImport.update({
+  id: '/supplies',
+  path: '/supplies',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthStaffRouteRoute = AuthStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthProfileRouteRoute = AuthProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthOrdersRouteRoute = AuthOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthDishesRouteRoute = AuthDishesRouteImport.update({
+  id: '/dishes',
+  path: '/dishes',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 const AuthDashboardRouteRoute = AuthDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthSuppliesIndexRoute = AuthSuppliesIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthSuppliesRouteRoute,
+} as any)
+
+const AuthStaffIndexRoute = AuthStaffIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthStaffRouteRoute,
+} as any)
+
+const AuthProfileIndexRoute = AuthProfileIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthProfileRouteRoute,
+} as any)
+
+const AuthOrdersIndexRoute = AuthOrdersIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthOrdersRouteRoute,
+} as any)
+
+const AuthDishesIndexRoute = AuthDishesIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthDishesRouteRoute,
 } as any)
 
 const AuthDashboardIndexRoute = AuthDashboardIndexImport.update({
@@ -66,12 +136,82 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardRouteImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/dishes': {
+      id: '/_auth/dishes'
+      path: '/dishes'
+      fullPath: '/dishes'
+      preLoaderRoute: typeof AuthDishesRouteImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/orders': {
+      id: '/_auth/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof AuthOrdersRouteImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/profile': {
+      id: '/_auth/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthProfileRouteImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/staff': {
+      id: '/_auth/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof AuthStaffRouteImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/supplies': {
+      id: '/_auth/supplies'
+      path: '/supplies'
+      fullPath: '/supplies'
+      preLoaderRoute: typeof AuthSuppliesRouteImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/dashboard/': {
       id: '/_auth/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof AuthDashboardIndexImport
       parentRoute: typeof AuthDashboardRouteImport
+    }
+    '/_auth/dishes/': {
+      id: '/_auth/dishes/'
+      path: '/'
+      fullPath: '/dishes/'
+      preLoaderRoute: typeof AuthDishesIndexImport
+      parentRoute: typeof AuthDishesRouteImport
+    }
+    '/_auth/orders/': {
+      id: '/_auth/orders/'
+      path: '/'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof AuthOrdersIndexImport
+      parentRoute: typeof AuthOrdersRouteImport
+    }
+    '/_auth/profile/': {
+      id: '/_auth/profile/'
+      path: '/'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof AuthProfileIndexImport
+      parentRoute: typeof AuthProfileRouteImport
+    }
+    '/_auth/staff/': {
+      id: '/_auth/staff/'
+      path: '/'
+      fullPath: '/staff/'
+      preLoaderRoute: typeof AuthStaffIndexImport
+      parentRoute: typeof AuthStaffRouteImport
+    }
+    '/_auth/supplies/': {
+      id: '/_auth/supplies/'
+      path: '/'
+      fullPath: '/supplies/'
+      preLoaderRoute: typeof AuthSuppliesIndexImport
+      parentRoute: typeof AuthSuppliesRouteImport
     }
   }
 }
@@ -89,12 +229,80 @@ const AuthDashboardRouteRouteChildren: AuthDashboardRouteRouteChildren = {
 const AuthDashboardRouteRouteWithChildren =
   AuthDashboardRouteRoute._addFileChildren(AuthDashboardRouteRouteChildren)
 
+interface AuthDishesRouteRouteChildren {
+  AuthDishesIndexRoute: typeof AuthDishesIndexRoute
+}
+
+const AuthDishesRouteRouteChildren: AuthDishesRouteRouteChildren = {
+  AuthDishesIndexRoute: AuthDishesIndexRoute,
+}
+
+const AuthDishesRouteRouteWithChildren = AuthDishesRouteRoute._addFileChildren(
+  AuthDishesRouteRouteChildren,
+)
+
+interface AuthOrdersRouteRouteChildren {
+  AuthOrdersIndexRoute: typeof AuthOrdersIndexRoute
+}
+
+const AuthOrdersRouteRouteChildren: AuthOrdersRouteRouteChildren = {
+  AuthOrdersIndexRoute: AuthOrdersIndexRoute,
+}
+
+const AuthOrdersRouteRouteWithChildren = AuthOrdersRouteRoute._addFileChildren(
+  AuthOrdersRouteRouteChildren,
+)
+
+interface AuthProfileRouteRouteChildren {
+  AuthProfileIndexRoute: typeof AuthProfileIndexRoute
+}
+
+const AuthProfileRouteRouteChildren: AuthProfileRouteRouteChildren = {
+  AuthProfileIndexRoute: AuthProfileIndexRoute,
+}
+
+const AuthProfileRouteRouteWithChildren =
+  AuthProfileRouteRoute._addFileChildren(AuthProfileRouteRouteChildren)
+
+interface AuthStaffRouteRouteChildren {
+  AuthStaffIndexRoute: typeof AuthStaffIndexRoute
+}
+
+const AuthStaffRouteRouteChildren: AuthStaffRouteRouteChildren = {
+  AuthStaffIndexRoute: AuthStaffIndexRoute,
+}
+
+const AuthStaffRouteRouteWithChildren = AuthStaffRouteRoute._addFileChildren(
+  AuthStaffRouteRouteChildren,
+)
+
+interface AuthSuppliesRouteRouteChildren {
+  AuthSuppliesIndexRoute: typeof AuthSuppliesIndexRoute
+}
+
+const AuthSuppliesRouteRouteChildren: AuthSuppliesRouteRouteChildren = {
+  AuthSuppliesIndexRoute: AuthSuppliesIndexRoute,
+}
+
+const AuthSuppliesRouteRouteWithChildren =
+  AuthSuppliesRouteRoute._addFileChildren(AuthSuppliesRouteRouteChildren)
+
 interface AuthRouteChildren {
   AuthDashboardRouteRoute: typeof AuthDashboardRouteRouteWithChildren
+  AuthDishesRouteRoute: typeof AuthDishesRouteRouteWithChildren
+  AuthOrdersRouteRoute: typeof AuthOrdersRouteRouteWithChildren
+  AuthProfileRouteRoute: typeof AuthProfileRouteRouteWithChildren
+  AuthStaffRouteRoute: typeof AuthStaffRouteRouteWithChildren
+  AuthSuppliesRouteRoute: typeof AuthSuppliesRouteRouteWithChildren
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthDashboardRouteRoute: AuthDashboardRouteRouteWithChildren,
+  AuthDishesRouteRoute: AuthDishesRouteRouteWithChildren,
+  AuthOrdersRouteRoute: AuthOrdersRouteRouteWithChildren,
+  AuthProfileRouteRoute: AuthProfileRouteRouteWithChildren,
+  AuthStaffRouteRoute: AuthStaffRouteRouteWithChildren,
+  AuthSuppliesRouteRoute: AuthSuppliesRouteRouteWithChildren,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -103,13 +311,28 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/dashboard': typeof AuthDashboardRouteRouteWithChildren
+  '/dishes': typeof AuthDishesRouteRouteWithChildren
+  '/orders': typeof AuthOrdersRouteRouteWithChildren
+  '/profile': typeof AuthProfileRouteRouteWithChildren
+  '/staff': typeof AuthStaffRouteRouteWithChildren
+  '/supplies': typeof AuthSuppliesRouteRouteWithChildren
   '/dashboard/': typeof AuthDashboardIndexRoute
+  '/dishes/': typeof AuthDishesIndexRoute
+  '/orders/': typeof AuthOrdersIndexRoute
+  '/profile/': typeof AuthProfileIndexRoute
+  '/staff/': typeof AuthStaffIndexRoute
+  '/supplies/': typeof AuthSuppliesIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/dashboard': typeof AuthDashboardIndexRoute
+  '/dishes': typeof AuthDishesIndexRoute
+  '/orders': typeof AuthOrdersIndexRoute
+  '/profile': typeof AuthProfileIndexRoute
+  '/staff': typeof AuthStaffIndexRoute
+  '/supplies': typeof AuthSuppliesIndexRoute
 }
 
 export interface FileRoutesById {
@@ -117,15 +340,62 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_auth/dashboard': typeof AuthDashboardRouteRouteWithChildren
+  '/_auth/dishes': typeof AuthDishesRouteRouteWithChildren
+  '/_auth/orders': typeof AuthOrdersRouteRouteWithChildren
+  '/_auth/profile': typeof AuthProfileRouteRouteWithChildren
+  '/_auth/staff': typeof AuthStaffRouteRouteWithChildren
+  '/_auth/supplies': typeof AuthSuppliesRouteRouteWithChildren
   '/_auth/dashboard/': typeof AuthDashboardIndexRoute
+  '/_auth/dishes/': typeof AuthDishesIndexRoute
+  '/_auth/orders/': typeof AuthOrdersIndexRoute
+  '/_auth/profile/': typeof AuthProfileIndexRoute
+  '/_auth/staff/': typeof AuthStaffIndexRoute
+  '/_auth/supplies/': typeof AuthSuppliesIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/dashboard' | '/dashboard/'
+  fullPaths:
+    | '/'
+    | ''
+    | '/dashboard'
+    | '/dishes'
+    | '/orders'
+    | '/profile'
+    | '/staff'
+    | '/supplies'
+    | '/dashboard/'
+    | '/dishes/'
+    | '/orders/'
+    | '/profile/'
+    | '/staff/'
+    | '/supplies/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/dashboard'
-  id: '__root__' | '/' | '/_auth' | '/_auth/dashboard' | '/_auth/dashboard/'
+  to:
+    | '/'
+    | ''
+    | '/dashboard'
+    | '/dishes'
+    | '/orders'
+    | '/profile'
+    | '/staff'
+    | '/supplies'
+  id:
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/_auth/dashboard'
+    | '/_auth/dishes'
+    | '/_auth/orders'
+    | '/_auth/profile'
+    | '/_auth/staff'
+    | '/_auth/supplies'
+    | '/_auth/dashboard/'
+    | '/_auth/dishes/'
+    | '/_auth/orders/'
+    | '/_auth/profile/'
+    | '/_auth/staff/'
+    | '/_auth/supplies/'
   fileRoutesById: FileRoutesById
 }
 
@@ -159,7 +429,12 @@ export const routeTree = rootRoute
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
-        "/_auth/dashboard"
+        "/_auth/dashboard",
+        "/_auth/dishes",
+        "/_auth/orders",
+        "/_auth/profile",
+        "/_auth/staff",
+        "/_auth/supplies"
       ]
     },
     "/_auth/dashboard": {
@@ -169,9 +444,64 @@ export const routeTree = rootRoute
         "/_auth/dashboard/"
       ]
     },
+    "/_auth/dishes": {
+      "filePath": "_auth/dishes.route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/dishes/"
+      ]
+    },
+    "/_auth/orders": {
+      "filePath": "_auth/orders.route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/orders/"
+      ]
+    },
+    "/_auth/profile": {
+      "filePath": "_auth/profile.route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/profile/"
+      ]
+    },
+    "/_auth/staff": {
+      "filePath": "_auth/staff.route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/staff/"
+      ]
+    },
+    "/_auth/supplies": {
+      "filePath": "_auth/supplies.route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/supplies/"
+      ]
+    },
     "/_auth/dashboard/": {
       "filePath": "_auth/dashboard/index.tsx",
       "parent": "/_auth/dashboard"
+    },
+    "/_auth/dishes/": {
+      "filePath": "_auth/dishes/index.tsx",
+      "parent": "/_auth/dishes"
+    },
+    "/_auth/orders/": {
+      "filePath": "_auth/orders/index.tsx",
+      "parent": "/_auth/orders"
+    },
+    "/_auth/profile/": {
+      "filePath": "_auth/profile/index.tsx",
+      "parent": "/_auth/profile"
+    },
+    "/_auth/staff/": {
+      "filePath": "_auth/staff/index.tsx",
+      "parent": "/_auth/staff"
+    },
+    "/_auth/supplies/": {
+      "filePath": "_auth/supplies/index.tsx",
+      "parent": "/_auth/supplies"
     }
   }
 }

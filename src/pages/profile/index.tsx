@@ -1,6 +1,6 @@
 ﻿import { Typography } from "@mui/material";
 
-const DashboardIndex = () => {
+const ProfileIndex = () => {
   return (
     <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
       Внутренний контент страницы
@@ -8,4 +8,4 @@ const DashboardIndex = () => {
   );
 };
 
-export default DashboardIndex;
+export default ProfileIndex;
