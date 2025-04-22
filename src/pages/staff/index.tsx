@@ -1,10 +1,28 @@
-﻿import { Typography } from "@mui/material";
+﻿import ErrorComponent from "../../components/errorComponent.tsx";
+import { useStaff } from "../../utils/apiHooks.ts";
+import { PendingComponent } from "../../components/pendingComponent.tsx";
+import { DataGrid } from "@mui/x-data-grid";
+import { staffColumns } from "../../utils/columns.ts";
 
 const StaffIndex = () => {
+  const { data, error, isLoading } = useStaff();
+
+  if (isLoading) {
+    return <PendingComponent />;
+  }
+
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
+
   return (
-    <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
-      Внутренний контент страницы
-    </Typography>
+    <DataGrid
+      columns={staffColumns}
+      rows={data}
+      getRowId={(row) => row.idEmployee}
+      disableColumnMenu={true}
+      hideFooter={true}
+    />
   );
 };
 
