@@ -1,10 +1,12 @@
 ﻿import { createRouter } from "@tanstack/react-router";
 import { queryClient } from "./fetchClient.ts";
 import { routeTree } from "../routeTree.gen.ts";
+import { PendingComponent } from "../components/pendingComponent.tsx";
 
 export const router = createRouter({
   routeTree,
   context: { queryClient },
+  defaultPendingComponent: PendingComponent,
 });
 
 declare module "@tanstack/react-router" {
