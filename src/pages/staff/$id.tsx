@@ -1,12 +1,9 @@
 ﻿import { useStaffById } from "../../utils/apiHooks.ts";
-import { getRouteApi } from "@tanstack/react-router";
 import { PendingComponent } from "../../components/pendingComponent.tsx";
 import ErrorComponent from "../../components/errorComponent.tsx";
 import { List, ListItem, ListItemText } from "@mui/material";
 
-const route = getRouteApi("/_auth/staff_/$id");
-const StaffId = () => {
-  const { id } = route.useParams();
+const StaffId = (id: string) => {
   const { data, error, isLoading } = useStaffById(parseInt(id));
 
   if (isLoading) {
