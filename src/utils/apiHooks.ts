@@ -27,3 +27,11 @@ export const useOrderById = (id: number) => {
 export const useDishes = () => {
   return $api.useQuery("get", "/api/Dishes/GetAll");
 };
+
+export const useDish = (id: number) => {
+  return $api.useQuery("get", "/api/Dishes/GetById/{id}", {
+    params: {
+      path: { id: id },
+    },
+  });
+};
