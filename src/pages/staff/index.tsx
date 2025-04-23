@@ -13,7 +13,7 @@ const StaffIndex = () => {
     return <PendingComponent />;
   }
 
-  if (error) {
+  if (!data || error) {
     return <ErrorComponent />;
   }
 
