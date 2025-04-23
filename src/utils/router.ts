@@ -1,5 +1,5 @@
 ﻿import { createRouter } from "@tanstack/react-router";
-import { queryClient } from "./fetchClient.ts";
+import { queryClient } from "./clients.ts";
 import { routeTree } from "../routeTree.gen.ts";
 import { PendingComponent } from "../components/pendingComponent.tsx";
 
