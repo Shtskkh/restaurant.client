@@ -11,3 +11,7 @@ export const useStaffById = (id: number) => {
     },
   });
 };
+
+export const useOrders = () => {
+  return $api.useQuery("get", "/api/Orders/GetAll");
+};
