@@ -23,3 +23,7 @@ export const useOrderById = (id: number) => {
     },
   });
 };
+
+export const useDishes = () => {
+  return $api.useQuery("get", "/api/Dishes/GetAll");
+};
