@@ -14,7 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthSuppliesRouteImport } from './routes/_auth/supplies.route'
-import { Route as AuthStaffRouteImport } from './routes/_auth/staff.route'
+import { Route as AuthStaffRouteImport } from './routes/_auth/staff/route'
 import { Route as AuthProfileRouteImport } from './routes/_auth/profile.route'
 import { Route as AuthOrdersRouteImport } from './routes/_auth/orders.route'
 import { Route as AuthDishesRouteImport } from './routes/_auth/dishes.route'
@@ -25,6 +25,8 @@ import { Route as AuthProfileIndexImport } from './routes/_auth/profile/index'
 import { Route as AuthOrdersIndexImport } from './routes/_auth/orders/index'
 import { Route as AuthDishesIndexImport } from './routes/_auth/dishes/index'
 import { Route as AuthDashboardIndexImport } from './routes/_auth/dashboard/index'
+import { Route as AuthStaffIdRouteImport } from './routes/_auth/staff_/$id/route'
+import { Route as AuthStaffIdIndexImport } from './routes/_auth/staff_/$id/index'
 
 // Create/Update Routes
 
@@ -111,6 +113,18 @@ const AuthDashboardIndexRoute = AuthDashboardIndexImport.update({
   getParentRoute: () => AuthDashboardRouteRoute,
 } as any)
 
+const AuthStaffIdRouteRoute = AuthStaffIdRouteImport.update({
+  id: '/staff_/$id',
+  path: '/staff/$id',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthStaffIdIndexRoute = AuthStaffIdIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthStaffIdRouteRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -171,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSuppliesRouteImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/staff_/$id': {
+      id: '/_auth/staff_/$id'
+      path: '/staff/$id'
+      fullPath: '/staff/$id'
+      preLoaderRoute: typeof AuthStaffIdRouteImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/dashboard/': {
       id: '/_auth/dashboard/'
       path: '/'
@@ -212,6 +233,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/supplies/'
       preLoaderRoute: typeof AuthSuppliesIndexImport
       parentRoute: typeof AuthSuppliesRouteImport
+    }
+    '/_auth/staff_/$id/': {
+      id: '/_auth/staff_/$id/'
+      path: '/'
+      fullPath: '/staff/$id/'
+      preLoaderRoute: typeof AuthStaffIdIndexImport
+      parentRoute: typeof AuthStaffIdRouteImport
     }
   }
 }
@@ -287,6 +315,17 @@ const AuthSuppliesRouteRouteChildren: AuthSuppliesRouteRouteChildren = {
 const AuthSuppliesRouteRouteWithChildren =
   AuthSuppliesRouteRoute._addFileChildren(AuthSuppliesRouteRouteChildren)
 
+interface AuthStaffIdRouteRouteChildren {
+  AuthStaffIdIndexRoute: typeof AuthStaffIdIndexRoute
+}
+
+const AuthStaffIdRouteRouteChildren: AuthStaffIdRouteRouteChildren = {
+  AuthStaffIdIndexRoute: AuthStaffIdIndexRoute,
+}
+
+const AuthStaffIdRouteRouteWithChildren =
+  AuthStaffIdRouteRoute._addFileChildren(AuthStaffIdRouteRouteChildren)
+
 interface AuthRouteChildren {
   AuthDashboardRouteRoute: typeof AuthDashboardRouteRouteWithChildren
   AuthDishesRouteRoute: typeof AuthDishesRouteRouteWithChildren
@@ -294,6 +333,7 @@ interface AuthRouteChildren {
   AuthProfileRouteRoute: typeof AuthProfileRouteRouteWithChildren
   AuthStaffRouteRoute: typeof AuthStaffRouteRouteWithChildren
   AuthSuppliesRouteRoute: typeof AuthSuppliesRouteRouteWithChildren
+  AuthStaffIdRouteRoute: typeof AuthStaffIdRouteRouteWithChildren
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -303,6 +343,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthProfileRouteRoute: AuthProfileRouteRouteWithChildren,
   AuthStaffRouteRoute: AuthStaffRouteRouteWithChildren,
   AuthSuppliesRouteRoute: AuthSuppliesRouteRouteWithChildren,
+  AuthStaffIdRouteRoute: AuthStaffIdRouteRouteWithChildren,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -316,12 +357,14 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthProfileRouteRouteWithChildren
   '/staff': typeof AuthStaffRouteRouteWithChildren
   '/supplies': typeof AuthSuppliesRouteRouteWithChildren
+  '/staff/$id': typeof AuthStaffIdRouteRouteWithChildren
   '/dashboard/': typeof AuthDashboardIndexRoute
   '/dishes/': typeof AuthDishesIndexRoute
   '/orders/': typeof AuthOrdersIndexRoute
   '/profile/': typeof AuthProfileIndexRoute
   '/staff/': typeof AuthStaffIndexRoute
   '/supplies/': typeof AuthSuppliesIndexRoute
+  '/staff/$id/': typeof AuthStaffIdIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -333,6 +376,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthProfileIndexRoute
   '/staff': typeof AuthStaffIndexRoute
   '/supplies': typeof AuthSuppliesIndexRoute
+  '/staff/$id': typeof AuthStaffIdIndexRoute
 }
 
 export interface FileRoutesById {
@@ -345,12 +389,14 @@ export interface FileRoutesById {
   '/_auth/profile': typeof AuthProfileRouteRouteWithChildren
   '/_auth/staff': typeof AuthStaffRouteRouteWithChildren
   '/_auth/supplies': typeof AuthSuppliesRouteRouteWithChildren
+  '/_auth/staff_/$id': typeof AuthStaffIdRouteRouteWithChildren
   '/_auth/dashboard/': typeof AuthDashboardIndexRoute
   '/_auth/dishes/': typeof AuthDishesIndexRoute
   '/_auth/orders/': typeof AuthOrdersIndexRoute
   '/_auth/profile/': typeof AuthProfileIndexRoute
   '/_auth/staff/': typeof AuthStaffIndexRoute
   '/_auth/supplies/': typeof AuthSuppliesIndexRoute
+  '/_auth/staff_/$id/': typeof AuthStaffIdIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -364,12 +410,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/staff'
     | '/supplies'
+    | '/staff/$id'
     | '/dashboard/'
     | '/dishes/'
     | '/orders/'
     | '/profile/'
     | '/staff/'
     | '/supplies/'
+    | '/staff/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -380,6 +428,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/staff'
     | '/supplies'
+    | '/staff/$id'
   id:
     | '__root__'
     | '/'
@@ -390,12 +439,14 @@ export interface FileRouteTypes {
     | '/_auth/profile'
     | '/_auth/staff'
     | '/_auth/supplies'
+    | '/_auth/staff_/$id'
     | '/_auth/dashboard/'
     | '/_auth/dishes/'
     | '/_auth/orders/'
     | '/_auth/profile/'
     | '/_auth/staff/'
     | '/_auth/supplies/'
+    | '/_auth/staff_/$id/'
   fileRoutesById: FileRoutesById
 }
 
@@ -434,7 +485,8 @@ export const routeTree = rootRoute
         "/_auth/orders",
         "/_auth/profile",
         "/_auth/staff",
-        "/_auth/supplies"
+        "/_auth/supplies",
+        "/_auth/staff_/$id"
       ]
     },
     "/_auth/dashboard": {
@@ -466,7 +518,7 @@ export const routeTree = rootRoute
       ]
     },
     "/_auth/staff": {
-      "filePath": "_auth/staff.route.tsx",
+      "filePath": "_auth/staff/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/staff/"
@@ -477,6 +529,13 @@ export const routeTree = rootRoute
       "parent": "/_auth",
       "children": [
         "/_auth/supplies/"
+      ]
+    },
+    "/_auth/staff_/$id": {
+      "filePath": "_auth/staff_/$id/route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/staff_/$id/"
       ]
     },
     "/_auth/dashboard/": {
@@ -502,6 +561,10 @@ export const routeTree = rootRoute
     "/_auth/supplies/": {
       "filePath": "_auth/supplies/index.tsx",
       "parent": "/_auth/supplies"
+    },
+    "/_auth/staff_/$id/": {
+      "filePath": "_auth/staff_/$id/index.tsx",
+      "parent": "/_auth/staff_/$id"
     }
   }
 }
