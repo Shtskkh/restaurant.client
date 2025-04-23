@@ -13,12 +13,12 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
-import { Route as AuthSuppliesRouteImport } from './routes/_auth/supplies.route'
+import { Route as AuthSuppliesRouteImport } from './routes/_auth/supplies/route'
 import { Route as AuthStaffRouteImport } from './routes/_auth/staff/route'
-import { Route as AuthProfileRouteImport } from './routes/_auth/profile.route'
-import { Route as AuthOrdersRouteImport } from './routes/_auth/orders.route'
-import { Route as AuthDishesRouteImport } from './routes/_auth/dishes.route'
-import { Route as AuthDashboardRouteImport } from './routes/_auth/dashboard.route'
+import { Route as AuthProfileRouteImport } from './routes/_auth/profile/route'
+import { Route as AuthOrdersRouteImport } from './routes/_auth/orders/route'
+import { Route as AuthDishesRouteImport } from './routes/_auth/dishes/route'
+import { Route as AuthDashboardRouteImport } from './routes/_auth/dashboard/route'
 import { Route as AuthSuppliesIndexImport } from './routes/_auth/supplies/index'
 import { Route as AuthStaffIndexImport } from './routes/_auth/staff/index'
 import { Route as AuthProfileIndexImport } from './routes/_auth/profile/index'
@@ -490,28 +490,28 @@ export const routeTree = rootRoute
       ]
     },
     "/_auth/dashboard": {
-      "filePath": "_auth/dashboard.route.tsx",
+      "filePath": "_auth/dashboard/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/dashboard/"
       ]
     },
     "/_auth/dishes": {
-      "filePath": "_auth/dishes.route.tsx",
+      "filePath": "_auth/dishes/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/dishes/"
       ]
     },
     "/_auth/orders": {
-      "filePath": "_auth/orders.route.tsx",
+      "filePath": "_auth/orders/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/orders/"
       ]
     },
     "/_auth/profile": {
-      "filePath": "_auth/profile.route.tsx",
+      "filePath": "_auth/profile/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/profile/"
@@ -525,7 +525,7 @@ export const routeTree = rootRoute
       ]
     },
     "/_auth/supplies": {
-      "filePath": "_auth/supplies.route.tsx",
+      "filePath": "_auth/supplies/route.tsx",
       "parent": "/_auth",
       "children": [
         "/_auth/supplies/"
