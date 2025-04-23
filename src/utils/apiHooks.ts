@@ -1,6 +1,13 @@
-﻿import { $api } from "./fetchClient.ts";
-import { useQuery } from "@tanstack/react-query";
+﻿import { $api } from "./clients.ts";
 
 export const useStaff = () => {
-  return useQuery($api.queryOptions("get", "/api/Staff/GetAll"));
+  return $api.useQuery("get", "/api/Staff/GetAll");
+};
+
+export const useStaffById = (id: number) => {
+  return $api.useQuery("get", "/api/Staff/GetById/{id}", {
+    params: {
+      path: { id: id },
+    },
+  });
 };
