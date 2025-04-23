@@ -15,3 +15,11 @@ export const useStaffById = (id: number) => {
 export const useOrders = () => {
   return $api.useQuery("get", "/api/Orders/GetAll");
 };
+
+export const useOrderById = (id: number) => {
+  return $api.useQuery("get", "/api/Orders/GetById/{id}", {
+    params: {
+      path: { id: id },
+    },
+  });
+};
