@@ -28,6 +28,15 @@ export interface paths {
                 };
             };
             responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AuthSuccessResponseModel"];
+                    };
+                };
                 /** @description Bad Request */
                 400: {
                     headers: {
@@ -352,6 +361,9 @@ export interface components {
         AuthRequestModel: {
             login: string | null;
             password: string | null;
+        };
+        AuthSuccessResponseModel: {
+            token: string | null;
         };
         DishInOrderModel: {
             /** Format: int32 */
