@@ -5,7 +5,7 @@ import { PendingComponent } from "../components/pendingComponent.tsx";
 
 export const router = createRouter({
   routeTree,
-  context: { queryClient },
+  context: { queryClient, auth: undefined! },
   defaultPendingComponent: PendingComponent,
 });
 

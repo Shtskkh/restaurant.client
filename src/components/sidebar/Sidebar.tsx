@@ -1,8 +1,26 @@
-﻿import { Divider, Drawer, List } from "@mui/material";
+﻿import {
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { tabs } from "./tabs.tsx";
 import { ListItemLink } from "./ListItemLink.tsx";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "@tanstack/react-router";
+import { authStore } from "../../utils/authStore.ts";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const { clear } = authStore();
+  const handeLogOut = () => {
+    clear();
+    navigate({ to: "/login" }).then();
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -25,6 +43,14 @@ const Sidebar = () => {
           />
         ))}
         <Divider />
+        <ListItem disableGutters>
+          <ListItemButton onClick={handeLogOut}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Выйти" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Drawer>
   );
