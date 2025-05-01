@@ -35,3 +35,12 @@ export const useDish = (id: number) => {
     },
   });
 };
+
+export const useAuth = (login: string, password: string) => {
+  return $api.useQuery("post", "/api/Auth/login", {
+    body: {
+      login: login,
+      password: password,
+    },
+  });
+};
