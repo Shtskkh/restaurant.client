@@ -22,13 +22,21 @@ export interface paths {
             };
             requestBody?: {
                 content: {
-                    "multipart/form-data": {
-                        Login: string;
-                        Password: string;
-                    };
+                    "application/json": components["schemas"]["AuthRequestModel"];
+                    "text/json": components["schemas"]["AuthRequestModel"];
+                    "application/*+json": components["schemas"]["AuthRequestModel"];
                 };
             };
             responses: {
+                /** @description Bad Request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProblemDetails"];
+                    };
+                };
                 /** @description Not Found */
                 404: {
                     headers: {
@@ -341,6 +349,10 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        AuthRequestModel: {
+            login: string | null;
+            password: string | null;
+        };
         DishInOrderModel: {
             /** Format: int32 */
             idDish: number;
