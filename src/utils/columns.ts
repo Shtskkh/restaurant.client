@@ -164,5 +164,6 @@ export const suppliesColumns: GridColDef<Supply>[] = [
   {
     field: "supplier",
     headerName: "Поставщик",
+    flex: 1,
   },
 ];
