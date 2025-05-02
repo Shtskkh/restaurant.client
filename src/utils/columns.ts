@@ -160,6 +160,9 @@ export const suppliesColumns: GridColDef<Supply>[] = [
     field: "date",
     headerName: "Дата",
     flex: 1,
+    valueFormatter: (value: string) => {
+      return value.split("T")[0];
+    },
   },
   {
     field: "supplier",
