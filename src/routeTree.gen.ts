@@ -26,8 +26,10 @@ import { Route as AuthDishesIndexImport } from './routes/_auth/dishes/index'
 import { Route as AuthDashboardIndexImport } from './routes/_auth/dashboard/index'
 import { Route as AuthStaffIdRouteImport } from './routes/_auth/staff_/$id/route'
 import { Route as AuthOrdersIdRouteImport } from './routes/_auth/orders_/$id/route'
+import { Route as AuthDishesIdRouteImport } from './routes/_auth/dishes_/$id/route'
 import { Route as AuthStaffIdIndexImport } from './routes/_auth/staff_/$id/index'
 import { Route as AuthOrdersIdIndexImport } from './routes/_auth/orders_/$id/index'
+import { Route as AuthDishesIdIndexImport } from './routes/_auth/dishes_/$id/index'
 
 // Create/Update Routes
 
@@ -120,6 +122,12 @@ const AuthOrdersIdRouteRoute = AuthOrdersIdRouteImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const AuthDishesIdRouteRoute = AuthDishesIdRouteImport.update({
+  id: '/dishes_/$id',
+  path: '/dishes/$id',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 const AuthStaffIdIndexRoute = AuthStaffIdIndexImport.update({
   id: '/',
   path: '/',
@@ -130,6 +138,12 @@ const AuthOrdersIdIndexRoute = AuthOrdersIdIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthOrdersIdRouteRoute,
+} as any)
+
+const AuthDishesIdIndexRoute = AuthDishesIdIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthDishesIdRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -192,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSuppliesRouteImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/dishes_/$id': {
+      id: '/_auth/dishes_/$id'
+      path: '/dishes/$id'
+      fullPath: '/dishes/$id'
+      preLoaderRoute: typeof AuthDishesIdRouteImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/orders_/$id': {
       id: '/_auth/orders_/$id'
       path: '/orders/$id'
@@ -240,6 +261,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/supplies/'
       preLoaderRoute: typeof AuthSuppliesIndexImport
       parentRoute: typeof AuthSuppliesRouteImport
+    }
+    '/_auth/dishes_/$id/': {
+      id: '/_auth/dishes_/$id/'
+      path: '/'
+      fullPath: '/dishes/$id/'
+      preLoaderRoute: typeof AuthDishesIdIndexImport
+      parentRoute: typeof AuthDishesIdRouteImport
     }
     '/_auth/orders_/$id/': {
       id: '/_auth/orders_/$id/'
@@ -318,6 +346,17 @@ const AuthSuppliesRouteRouteChildren: AuthSuppliesRouteRouteChildren = {
 const AuthSuppliesRouteRouteWithChildren =
   AuthSuppliesRouteRoute._addFileChildren(AuthSuppliesRouteRouteChildren)
 
+interface AuthDishesIdRouteRouteChildren {
+  AuthDishesIdIndexRoute: typeof AuthDishesIdIndexRoute
+}
+
+const AuthDishesIdRouteRouteChildren: AuthDishesIdRouteRouteChildren = {
+  AuthDishesIdIndexRoute: AuthDishesIdIndexRoute,
+}
+
+const AuthDishesIdRouteRouteWithChildren =
+  AuthDishesIdRouteRoute._addFileChildren(AuthDishesIdRouteRouteChildren)
+
 interface AuthOrdersIdRouteRouteChildren {
   AuthOrdersIdIndexRoute: typeof AuthOrdersIdIndexRoute
 }
@@ -346,6 +385,7 @@ interface AuthRouteChildren {
   AuthOrdersRouteRoute: typeof AuthOrdersRouteRouteWithChildren
   AuthStaffRouteRoute: typeof AuthStaffRouteRouteWithChildren
   AuthSuppliesRouteRoute: typeof AuthSuppliesRouteRouteWithChildren
+  AuthDishesIdRouteRoute: typeof AuthDishesIdRouteRouteWithChildren
   AuthOrdersIdRouteRoute: typeof AuthOrdersIdRouteRouteWithChildren
   AuthStaffIdRouteRoute: typeof AuthStaffIdRouteRouteWithChildren
 }
@@ -356,6 +396,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthOrdersRouteRoute: AuthOrdersRouteRouteWithChildren,
   AuthStaffRouteRoute: AuthStaffRouteRouteWithChildren,
   AuthSuppliesRouteRoute: AuthSuppliesRouteRouteWithChildren,
+  AuthDishesIdRouteRoute: AuthDishesIdRouteRouteWithChildren,
   AuthOrdersIdRouteRoute: AuthOrdersIdRouteRouteWithChildren,
   AuthStaffIdRouteRoute: AuthStaffIdRouteRouteWithChildren,
 }
@@ -371,6 +412,7 @@ export interface FileRoutesByFullPath {
   '/orders': typeof AuthOrdersRouteRouteWithChildren
   '/staff': typeof AuthStaffRouteRouteWithChildren
   '/supplies': typeof AuthSuppliesRouteRouteWithChildren
+  '/dishes/$id': typeof AuthDishesIdRouteRouteWithChildren
   '/orders/$id': typeof AuthOrdersIdRouteRouteWithChildren
   '/staff/$id': typeof AuthStaffIdRouteRouteWithChildren
   '/dashboard/': typeof AuthDashboardIndexRoute
@@ -378,6 +420,7 @@ export interface FileRoutesByFullPath {
   '/orders/': typeof AuthOrdersIndexRoute
   '/staff/': typeof AuthStaffIndexRoute
   '/supplies/': typeof AuthSuppliesIndexRoute
+  '/dishes/$id/': typeof AuthDishesIdIndexRoute
   '/orders/$id/': typeof AuthOrdersIdIndexRoute
   '/staff/$id/': typeof AuthStaffIdIndexRoute
 }
@@ -391,6 +434,7 @@ export interface FileRoutesByTo {
   '/orders': typeof AuthOrdersIndexRoute
   '/staff': typeof AuthStaffIndexRoute
   '/supplies': typeof AuthSuppliesIndexRoute
+  '/dishes/$id': typeof AuthDishesIdIndexRoute
   '/orders/$id': typeof AuthOrdersIdIndexRoute
   '/staff/$id': typeof AuthStaffIdIndexRoute
 }
@@ -405,6 +449,7 @@ export interface FileRoutesById {
   '/_auth/orders': typeof AuthOrdersRouteRouteWithChildren
   '/_auth/staff': typeof AuthStaffRouteRouteWithChildren
   '/_auth/supplies': typeof AuthSuppliesRouteRouteWithChildren
+  '/_auth/dishes_/$id': typeof AuthDishesIdRouteRouteWithChildren
   '/_auth/orders_/$id': typeof AuthOrdersIdRouteRouteWithChildren
   '/_auth/staff_/$id': typeof AuthStaffIdRouteRouteWithChildren
   '/_auth/dashboard/': typeof AuthDashboardIndexRoute
@@ -412,6 +457,7 @@ export interface FileRoutesById {
   '/_auth/orders/': typeof AuthOrdersIndexRoute
   '/_auth/staff/': typeof AuthStaffIndexRoute
   '/_auth/supplies/': typeof AuthSuppliesIndexRoute
+  '/_auth/dishes_/$id/': typeof AuthDishesIdIndexRoute
   '/_auth/orders_/$id/': typeof AuthOrdersIdIndexRoute
   '/_auth/staff_/$id/': typeof AuthStaffIdIndexRoute
 }
@@ -427,6 +473,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/staff'
     | '/supplies'
+    | '/dishes/$id'
     | '/orders/$id'
     | '/staff/$id'
     | '/dashboard/'
@@ -434,6 +481,7 @@ export interface FileRouteTypes {
     | '/orders/'
     | '/staff/'
     | '/supplies/'
+    | '/dishes/$id/'
     | '/orders/$id/'
     | '/staff/$id/'
   fileRoutesByTo: FileRoutesByTo
@@ -446,6 +494,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/staff'
     | '/supplies'
+    | '/dishes/$id'
     | '/orders/$id'
     | '/staff/$id'
   id:
@@ -458,6 +507,7 @@ export interface FileRouteTypes {
     | '/_auth/orders'
     | '/_auth/staff'
     | '/_auth/supplies'
+    | '/_auth/dishes_/$id'
     | '/_auth/orders_/$id'
     | '/_auth/staff_/$id'
     | '/_auth/dashboard/'
@@ -465,6 +515,7 @@ export interface FileRouteTypes {
     | '/_auth/orders/'
     | '/_auth/staff/'
     | '/_auth/supplies/'
+    | '/_auth/dishes_/$id/'
     | '/_auth/orders_/$id/'
     | '/_auth/staff_/$id/'
   fileRoutesById: FileRoutesById
@@ -508,6 +559,7 @@ export const routeTree = rootRoute
         "/_auth/orders",
         "/_auth/staff",
         "/_auth/supplies",
+        "/_auth/dishes_/$id",
         "/_auth/orders_/$id",
         "/_auth/staff_/$id"
       ]
@@ -550,6 +602,13 @@ export const routeTree = rootRoute
         "/_auth/supplies/"
       ]
     },
+    "/_auth/dishes_/$id": {
+      "filePath": "_auth/dishes_/$id/route.tsx",
+      "parent": "/_auth",
+      "children": [
+        "/_auth/dishes_/$id/"
+      ]
+    },
     "/_auth/orders_/$id": {
       "filePath": "_auth/orders_/$id/route.tsx",
       "parent": "/_auth",
@@ -583,6 +642,10 @@ export const routeTree = rootRoute
     "/_auth/supplies/": {
       "filePath": "_auth/supplies/index.tsx",
       "parent": "/_auth/supplies"
+    },
+    "/_auth/dishes_/$id/": {
+      "filePath": "_auth/dishes_/$id/index.tsx",
+      "parent": "/_auth/dishes_/$id"
     },
     "/_auth/orders_/$id/": {
       "filePath": "_auth/orders_/$id/index.tsx",

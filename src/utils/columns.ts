@@ -1,5 +1,5 @@
 ﻿import { GridColDef } from "@mui/x-data-grid";
-import { Dish, DishInOrder, Order, Staff } from "./types.ts";
+import { Dish, DishInOrder, Order, ProductInDish, Staff } from "./types.ts";
 
 export const staffColumns: GridColDef<Staff>[] = [
   {
@@ -115,6 +115,22 @@ export const dishesColumns: GridColDef<Dish>[] = [
     flex: 1,
     valueFormatter: (value) => {
       return value == true ? "Да" : "Нет";
+    },
+  },
+];
+
+export const productsInDishColumns: GridColDef<ProductInDish>[] = [
+  {
+    field: "title",
+    headerName: "Название",
+    flex: 1,
+  },
+  {
+    field: "count",
+    headerName: "Количество",
+    flex: 1,
+    valueFormatter: (_value: never, row: ProductInDish) => {
+      return `${row.count} ${row.unit}`;
     },
   },
 ];

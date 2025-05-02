@@ -1,10 +1,24 @@
 ﻿import { Typography } from "@mui/material";
 
-const ErrorComponent = () => {
+const ErrorComponent = (error: TError) => {
+  if (error instanceof Error) {
+    return (
+      <>
+        <title>Ошибка</title>
+        <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
+          Ошибка сервера, попробуйте позже. Ошибка: {error.message}
+        </Typography>
+      </>
+    );
+  }
+
   return (
-    <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
-      Что-то пошло не так!
-    </Typography>
+    <>
+      <title>Ошибка</title>
+      <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
+        Что-то пошло не так! Ошибка: {error.title}
+      </Typography>
+    </>
   );
 };
 
