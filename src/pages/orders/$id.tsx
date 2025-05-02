@@ -23,11 +23,13 @@ export const OrderId = (id: string) => {
     navigate({ to: "/dishes/$id", params: { id } }).then();
   };
 
+  const dateSplit = data.date.split("T");
+
   return (
     <>
       <List>
         <ListItem>
-          <ListItemText primary={`Дата: ${data.date}`} />
+          <ListItemText primary={`Дата: ${dateSplit[0]} ${dateSplit[1]}`} />
         </ListItem>
         <ListItem>
           <ListItemText primary={`Стол: ${data.tableNumber}`} />
