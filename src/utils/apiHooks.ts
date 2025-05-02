@@ -51,3 +51,7 @@ export const useAuth = (login: string, password: string) => {
     },
   );
 };
+
+export const useSupplies = () => {
+  return $api.useQuery("get", "/api/Supplies/GetAll");
+};
