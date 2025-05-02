@@ -1,10 +1,28 @@
-﻿import { Typography } from "@mui/material";
+﻿import { PendingComponent } from "../../components/pendingComponent.tsx";
+import ErrorComponent from "../../components/errorComponent.tsx";
+import { DataGrid } from "@mui/x-data-grid";
+import { suppliesColumns } from "../../utils/columns.ts";
+import { useSupplies } from "../../utils/apiHooks.ts";
 
 const SuppliesIndex = () => {
+  const { data, error, isLoading } = useSupplies();
+
+  if (isLoading) {
+    return <PendingComponent />;
+  }
+
+  if (!data || error) {
+    return <ErrorComponent />;
+  }
+
   return (
-    <Typography variant="body1" color="textPrimary" mt={3} mb={3}>
-      Внутренний контент страницы
-    </Typography>
+    <DataGrid
+      columns={suppliesColumns}
+      rows={data}
+      getRowId={(row) => row.date}
+      disableColumnMenu={true}
+      hideFooter={true}
+    />
   );
 };
 
