@@ -52,8 +52,8 @@ export const ordersColumns: GridColDef<Order>[] = [
     headerName: "Дата",
     flex: 1,
     valueFormatter: (value: string) => {
-      const splitted = value.split("T");
-      return `${splitted[0]} ${splitted[1]}`;
+      const split = value.split("T");
+      return `${split[0]} ${split[1]}`;
     },
   },
   {
