@@ -4,6 +4,7 @@ import ErrorComponent from "../../components/errorComponent.tsx";
 import { DataGrid, GridRowParams } from "@mui/x-data-grid";
 import { dishesColumns } from "../../utils/columns.ts";
 import { useNavigate } from "@tanstack/react-router";
+import { Button } from "@mui/material";
 
 const DishesIndex = () => {
   const { data, error, isLoading } = useDishes();
@@ -23,14 +24,19 @@ const DishesIndex = () => {
   };
 
   return (
-    <DataGrid
-      columns={dishesColumns}
-      rows={data}
-      getRowId={(row) => row.idDish}
-      disableColumnMenu={true}
-      onRowDoubleClick={handleClick}
-      hideFooter={true}
-    />
+    <>
+      <Button variant="contained" sx={{ marginBottom: 4 }}>
+        Добавить блюдо
+      </Button>
+      <DataGrid
+        columns={dishesColumns}
+        rows={data}
+        getRowId={(row) => row.idDish}
+        disableColumnMenu={true}
+        onRowDoubleClick={handleClick}
+        hideFooter={true}
+      />
+    </>
   );
 };
 

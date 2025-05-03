@@ -3,6 +3,7 @@ import ErrorComponent from "../../components/errorComponent.tsx";
 import { DataGrid } from "@mui/x-data-grid";
 import { suppliesColumns } from "../../utils/columns.ts";
 import { useSupplies } from "../../utils/apiHooks.ts";
+import { Button } from "@mui/material";
 
 const SuppliesIndex = () => {
   const { data, error, isLoading } = useSupplies();
@@ -16,13 +17,18 @@ const SuppliesIndex = () => {
   }
 
   return (
-    <DataGrid
-      columns={suppliesColumns}
-      rows={data}
-      getRowId={(row) => row.date}
-      disableColumnMenu={true}
-      hideFooter={true}
-    />
+    <>
+      <Button variant="contained" sx={{ marginBottom: 4 }}>
+        Добавить поставку
+      </Button>
+      <DataGrid
+        columns={suppliesColumns}
+        rows={data}
+        getRowId={(row) => row.date}
+        disableColumnMenu={true}
+        hideFooter={true}
+      />
+    </>
   );
 };
 
